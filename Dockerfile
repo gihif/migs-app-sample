@@ -24,7 +24,7 @@ RUN apk --update --no-cache add build-base nodejs mysql-dev curl python \
   && /usr/local/gcloud/google-cloud-sdk/install.sh \
   && rm -rf /var/cache/apk/* \
   && bundle install --deployment --jobs 10 --retry 5 \
-  && bundle exec rails assets:precompile \
+  && bundle exec rails assets:precompile
 
 # INSTALL CLOUD SQL PROXY
 RUN apt-get install -y wget unzip zip htop \
