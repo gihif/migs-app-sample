@@ -1,10 +1,11 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :load_user_list, except: [:index, :show, :destroy]
 
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.includes(:user)
   end
 
   # GET /images/1
@@ -69,6 +70,10 @@ class ImagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def image_params
-      params.require(:image).permit(:user_id)
+      params.require(:image).permit(:user_id, :title, :picture)
+    end
+
+    def load_user_list
+      @users = User.select(:id, :name).map { |user| [user.name, user.id] }
     end
 end
