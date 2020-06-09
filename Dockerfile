@@ -15,7 +15,6 @@ ENV RAILS_ENV=${build_env} \
 
 WORKDIR /app
 COPY . .
-COPY config/database.yml.example config/database.yml
 
 RUN apk --update --no-cache add build-base nodejs mysql-dev curl python \
   && gem install bundler --no-document \
