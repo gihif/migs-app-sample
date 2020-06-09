@@ -1,0 +1,39 @@
+<table class="table table-hover table-striped">
+  <tbody>
+    <tr>
+      <td><strong>Hostname</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Zone</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Template</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Version</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Current Load</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Health Check</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><strong>Actions</strong></td>
+      <td>
+        <%= link_to 'Make Unhealty', '#', class: 'btn btn-primary' %>
+        <%= link_to 'Start Load', '#', class: 'btn btn-primary' %>
+        <%= link_to 'Health Check URL', health_path, class: 'btn btn-primary', target: '_blank' %>
+        <%= link_to 'Version URL', '#', class: 'btn btn-primary' %>
+        <%= link_to 'Zone URL', '#', class: 'btn btn-primary' %>
+        <%= link_to 'App URL', images_path, class: 'btn btn-primary', target: '_blank' %>
+      </td>
+    </tr>
+  </tbody>
+</table>
