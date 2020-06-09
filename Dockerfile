@@ -30,7 +30,7 @@ RUN apk --update --no-cache add build-base nodejs mysql-dev curl python \
 RUN apt-get install -y wget unzip zip htop \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy \
   && chmod +x cloud_sql_proxy \
-  && ./cloud_sql_proxy -instances=${GCLOUD_CLOUD_SQL}=tcp:3306 -ip_address_types=PRIVATE
+  && ./cloud_sql_proxy -instances=${GCLOUD_CLOUD_SQL}=tcp:3306 -credential_file=config/gcs.json -ip_address_types=PRIVATE
 
 #TEMPORARY SCRIPT FOR TESTING CONNECTION TO CLOUD SQL
 RUN wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm \

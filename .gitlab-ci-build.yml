@@ -23,7 +23,7 @@ variables:
     - GCR_PATH="gcr.io/${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${BUILD_ENV_LOWERED}"
     - cp config/database.yml.${BUILD_ENV_LOWERED} config/database.yml
     - cp config/storage.yml.${BUILD_ENV_LOWERED} config/storage.yml
-    - cp config/gcs.json.${BUILD_ENV_LOWERED} config/gcs.jsons
+    - cp config/gcs.json.${BUILD_ENV_LOWERED} config/gcs.json
   script: 
     #prepare auth json with google token
     - echo "$GCP_SERVICE_ACCOUNT" | tr -d '\r' > keyfile.json
