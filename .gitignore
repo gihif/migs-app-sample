@@ -106,3 +106,5 @@ yarn-debug.log*
 .ruby-version
 
 config/gcs.json
+config/storage.yml
+config/database.yml

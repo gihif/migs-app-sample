@@ -17,7 +17,7 @@ local:
 # Remember not to checkin your GCS keyfile to a repository
 google:
   service: GCS
-  project: migs-app-sample-staging
+  project: unnur-migs-app-sample-staging
   credentials: <%= Rails.root.join('config/gcs.json') %>
   bucket: asset-migsappsample-staging.gihif.xyz
 
