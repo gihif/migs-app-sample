@@ -11,4 +11,21 @@ class HomeController < ApplicationController
     @current_load = ''
     @health_check = ''
   end
+
+  def zone
+    render plain: 'TBD'
+  end
+
+  def version
+    render plain: 'TBD'
+  end
+
+  def start_unhealthy
+    redirect_to root_path
+  end
+
+  def start_load
+    redirect_to root_path
+  end
+
 end

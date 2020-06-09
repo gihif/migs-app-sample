@@ -27,11 +27,11 @@
     <tr>
       <td><strong>Actions</strong></td>
       <td>
-        <%= link_to 'Make Unhealty', '#', class: 'btn btn-primary' %>
-        <%= link_to 'Start Load', '#', class: 'btn btn-primary' %>
+        <%= link_to 'Make Unhealty', start_unhealthy_path, method: :post, class: 'btn btn-primary' %>
+        <%= link_to 'Start Load', start_load_path, method: :post, class: 'btn btn-primary' %>
         <%= link_to 'Health Check URL', health_path, class: 'btn btn-primary', target: '_blank' %>
-        <%= link_to 'Version URL', '#', class: 'btn btn-primary' %>
-        <%= link_to 'Zone URL', '#', class: 'btn btn-primary' %>
+        <%= link_to 'Version URL', version_path, class: 'btn btn-primary', target: '_blank' %>
+        <%= link_to 'Zone URL', zone_path, class: 'btn btn-primary', target: '_blank' %>
         <%= link_to 'App URL', images_path, class: 'btn btn-primary', target: '_blank' %>
       </td>
     </tr>
