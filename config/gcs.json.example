@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "unnur-migs-app-sample-staging",
+  "private_key_id": "a9c4b08da3a76cf9ab1f8bbb80c377bf2d43fe4b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8BBoIeiwkb+VH\nQ7i0KCDp3XjILlptsmRoAY6gtkdvCQ7kLN1srXK8QDa4EUbIAOJfyXcanW5C5tQj\nw1w9Qjz6NC0vasVHJKWcHKU1MFT/RAqqhv0A/9cPlBQYn7t9g1EPSMoyp2FcMyH2\nAE0QVfZ8x6444KAw6A3yZpPQ9SK1/C0Ab39U4HNk9x3J3RbPav6HP7NvJFG4Nkze\nDOWQ/cjtabCA2+MR9+TtZRI5YzeHTJw0OvwJNNEHCRqfzojT+rASmHYBVWToGjgo\n6NOwVWl59VIDnAiQQPnsZAMFbhHceyiioEv1iJ/lQn3FRMRtzgdUbWScg9Ykt4g4\nW3kK8ZgTAgMBAAECggEABb1LHVnvAdTxajtOZrl+37fyDIvvS/MqweRvE5R2gJSf\nNSa/D6bWOACIN+NwuYESNM7BAwZhRX7BMeJJ04wZ5NPPUufVSkNIU7t2hs9V5bQq\nOzBpuSxJYJSQ1HuaM2ep0GfUorbQ79aW9Jwa8VYecyRJVKH1LrXQW/qQcpi5GYlu\nvpSFT2fWJMv6FDYJLOP3LgACIdeVtHqS6Ad0MMgj+YuRe4xLfpiC58kCF241085/\nCZIofyjp4PXxX7Q7U1FTJ4VYUr4RviZETp0HF2zWpGezlrGk/Pkh6Zfy1xuXyAzd\noI97OnBJi8FUunR9YZxvDZKVLXHUeZTBHc3Iwnk/oQKBgQDsrTxZ9slbOFgBDgof\nONvs3I/jm8MmN4KyGcvsK0zoJmwXhzGLyYj0/J8IUdpGqqMyN7Phpulwqq71KqFM\nR9IOv4JZ5XFFrKG/ESXSU4BcUF07JFzlKlmDLvwRU/oTgz4ymjc3LXXGuvdR5AtA\nYx4uP60IfiEaMfC4Tn8r/gGWsQKBgQDLXc/wRdxxfLxUOCmZUMAlZx/jpz5R6J81\nmYuZUa/B7XaRpBZpcR/YE3zi0ewG5RDaQFkUVD4xAWTt1vBMI8Ldqlftd/KYqlxk\nGMs1AEyivnjKbanmILZxjdkBtO3t9sdHFJQacpsnrVEFd637VxqIvvYcL4GIMwJ0\nlHIzK1cUAwKBgQDJ5VXQYMeP+1aHP9S+oaBqRBSy0xL8LOpex8a/ZoiqmOwoffl0\nB62/XyjCziBnm/SvR/k5C0ukAtZQ6dbC3ZmBXzjxOtsP1p38AcLD0tty5FNDuldM\nXn4RfCknFv4DWzfZrthfR3Zq2t9TijdW67a5OTSARCg00llIwB2YB4yPYQKBgBtv\nL2MBeaiRpDJUVUBKhXFGRSYH5L9V+0xWx19KhsRJjYo+MYvN5/bVQi6zFP0lH63h\nqmK0rqMbxgrTyRzsYhhXJ39wg/iWWtpiAd/Hh48Y1OCyBI538UTGVvUE/Gfyt5Ve\nMFCVD1s95UUwjPbwHDNAV6Ebw4SlJPqnH/TJLvkTAoGBAK1w2h4pX6csQmOB0EVE\nQNX04fw0iPMHcTE2EV+jJ7DddMltMtXHtIQ71DxUi/3+ecit0P8yS2crw8v6aeEU\nMCqY2wF0w09lixTP8QIiIAClfAHAMZyESXblD7Hlc5OO9XlpWBf7CsOxKkJn/Z3K\nDj2E0a0Znw8ZByAU4WGrgTuU\n-----END PRIVATE KEY-----\n",
+  "client_email": "admin-project@unnur-migs-app-sample-staging.iam.gserviceaccount.com",
+  "client_id": "101332511881946443185",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin-project%40unnur-migs-app-sample-staging.iam.gserviceaccount.com"
+}
