@@ -32,7 +32,6 @@ variables:
       --build-arg master_key="$RAILS_MASTER_KEY" \
       -f ./Dockerfile \
       -t ${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID} .
-    - cd ..
     #docker login before push
     - docker login -u _json_key --password-stdin https://gcr.io < keyfile.json
     #tagging X.X
