@@ -9,8 +9,10 @@ variables:
   stage: build
   variables:
     VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
+    PROJECT_NAME: "migs-app-sample"
   tags:
     - docker
+    - linux
   services:
     - google/cloud-sdk
   before_script:
@@ -56,7 +58,6 @@ build-migs-app-staging:
   environment:
     name: staging
   variables:
-    PROJECT_NAME: "migs-app-sample"
     BUILD_ENV: "Staging"
   only:
     - staging
@@ -67,7 +68,6 @@ build-migs-app-release:
   environment:
     name: release
   variables:
-    PROJECT_NAME: "migs-app-sample"
     BUILD_ENV: "Release"
   only:
     - master
