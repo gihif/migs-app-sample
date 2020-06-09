@@ -12,8 +12,9 @@ variables:
     PROJECT_NAME: "migs-app-sample"
   tags:
     - docker
-    - linux
+  image: docker:git
   services:
+    - docker:dind
     - google/cloud-sdk
   before_script:
     #set env variable
