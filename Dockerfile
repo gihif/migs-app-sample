@@ -32,11 +32,5 @@ RUN apk add --no-cache wget unzip zip htop \
   && chmod +x cloud_sql_proxy \
   && ./cloud_sql_proxy -instances=${GCLOUD_CLOUD_SQL}=tcp:3306 -credential_file=config/gcs.json -ip_address_types=PRIVATE &
 
-#TEMPORARY SCRIPT FOR TESTING CONNECTION TO CLOUD SQL
-RUN wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm \
-  && md5sum mysql57-community-release-el7-9.noarch.rpm \
-  && rpm -ivh mysql57-community-release-el7-9.noarch.rpm \
-  && apk add --no-cache wget mysql
-
 EXPOSE 80
 CMD ["sh", "-c", "bundle exec rails server -p 80" ]
