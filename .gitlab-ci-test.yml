@@ -17,7 +17,6 @@ test-zone-migs-app-staging:
     PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
   only:
     refs:
-      - web
       - staging
       - develop
   except:
@@ -33,7 +32,6 @@ test-zone-migs-app-release:
     PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
   only:
     refs:
-      - web
       - master
   except:
     refs:

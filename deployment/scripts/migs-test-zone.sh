@@ -2,6 +2,9 @@
 PROJECT_URL_PROTOCOL=$1
 PROJECT_URL_DOMAIN=$2
 
+set -e
+
+echo "URL Destination: ${PROJECT_URL_PROTOCOL}${PROJECT_URL_DOMAIN}/zone"
 for i in {1..300}
 do
   curl ${PROJECT_URL_PROTOCOL}${PROJECT_URL_DOMAIN}/zone
