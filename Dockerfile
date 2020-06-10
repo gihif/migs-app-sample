@@ -32,8 +32,7 @@ RUN apk --update --no-cache add build-base nodejs mysql-dev curl python \
 # INSTALL CLOUD SQL PROXY
 RUN apk add --no-cache wget \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy \
-COPY ./cloud_sql_proxy .
-RUN chmod +x ./cloud_sql_proxy
+  && chmod +x ./cloud_sql_proxy
 
 EXPOSE 80
 CMD ["sh", "-c", "./cloud_sql_proxy -instances=${GCLOUD_CLOUD_SQL}=tcp:3306 -credential_file=config/gcs.json -ip_address_types=PRIVATE & bundle exec rails server -p 80" ]
