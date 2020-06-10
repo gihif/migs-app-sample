@@ -12,6 +12,7 @@ ARG version
 ENV RAILS_ENV=${build_env} \
     RAILS_MASTER_KEY=${master_key} \
     RAILS_LOG_TO_STDOUT=true \
+    RAILS_SERVE_STATIC_FILES=true \
     PATH=$PATH:/usr/local/gcloud/google-cloud-sdk/bin \
     GCLOUD_MIGS_NAME=${GCP_MIGS_NAME} \
     GCLOUD_MIGS_REGION=${GCP_MIGS_REGION} \

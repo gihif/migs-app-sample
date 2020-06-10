@@ -1,0 +1,34 @@
+.test-zone-template:
+  variables:
+    PROJECT_URL_PROTOCOL: "https://"
+  tags:
+    - linux
+  script:
+    - echo "Testing available infrastructure zone list from MIGs ${GCP_MIGS_NAME}"
+    - sh deployment/scripts/migs-test-zone.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
+
+test-zone-migs-app-staging:
+  extends: .test-zone-template
+  environment:
+    name: staging
+  variables:
+    GCP_MIGS_NAME: "migsappsample-stag-logic-group"
+    PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
+  only:
+    refs:
+      - web
+    variables:
+      - $STAGING
+
+test-zone-migs-app-release:
+  extends: .test-zone-template
+  environment:
+    name: release
+  variables:
+    GCP_MIGS_NAME: "migsappsample-prod-logic-group"
+    PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
+  only:
+    refs:
+      - web
+    variables:
+      - $RELEASE
