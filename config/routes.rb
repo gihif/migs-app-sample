@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :images
   resources :users, except: [:index]
 
-  get 'health' => 'application#health'
-  get 'zone' => 'application#zone'
-  get 'version' => 'application#version'
-  post 'start_unhealthy' => 'application#start_unhealthy'
-  post 'start_load' => 'application#start_load'
+  get 'health' => 'home#health'
+  get 'zone' => 'home#zone'
+  get 'version' => 'home#version'
+  post 'start_unhealthy' => 'home#start_unhealthy'
+  post 'start_healthy' => 'home#start_healthy'
+  post 'start_load' => 'home#start_load'
 end
