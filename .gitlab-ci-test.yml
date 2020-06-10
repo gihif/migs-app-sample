@@ -18,8 +18,11 @@ test-zone-migs-app-staging:
   only:
     refs:
       - web
-    variables:
-      - $STAGING
+      - staging
+      - develop
+  except:
+    refs:
+      - pushes
 
 test-zone-migs-app-release:
   extends: .test-zone-template
@@ -31,5 +34,7 @@ test-zone-migs-app-release:
   only:
     refs:
       - web
-    variables:
-      - $RELEASE
+      - master
+  except:
+    refs:
+      - pushes
