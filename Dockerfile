@@ -4,14 +4,17 @@ LABEL maintainer="Uchiha Itachi <itachi@agate.id>"
 
 ARG build_env
 ARG master_key
-ARG GCLOUD_MIGS_NAME
-ARG GCLOUD_MIGS_REGION
-ARG GCLOUD_CLOUD_SQL
+ARG GCP_MIGS_NAME
+ARG GCP_MIGS_REGION
+ARG GCP_SQL_NAME
 
 ENV RAILS_ENV=${build_env} \
     RAILS_MASTER_KEY=${master_key} \
     RAILS_LOG_TO_STDOUT=true \
-    PATH=$PATH:/usr/local/gcloud/google-cloud-sdk/bin
+    PATH=$PATH:/usr/local/gcloud/google-cloud-sdk/bin \
+    GCLOUD_MIGS_NAME=${GCP_MIGS_NAME} \
+    GCLOUD_MIGS_REGION=${GCP_MIGS_REGION} \
+    GCLOUD_CLOUD_SQL=${GCP_SQL_NAME}
 
 WORKDIR /app
 COPY . .

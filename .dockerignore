@@ -1,3 +1,3 @@
 config/database.yml.*
 config/storage.yml.*
-config/gcs.jsons.*
+config/gcs.json.*

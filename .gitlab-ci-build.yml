@@ -33,9 +33,9 @@ variables:
       docker build \
       --build-arg build_env="production" \
       --build-arg master_key="${RAILS_MASTER_KEY}" \
-      --build-arg GCLOUD_MIGS_NAME="${GCLOUD_MIGS_NAME}" \
-      --build-arg GCLOUD_MIGS_REGION="${GCLOUD_MIGS_REGION}" \
-      --build-arg GCLOUD_CLOUD_SQL=${GCP_SQL_NAME} \
+      --build-arg GCP_MIGS_NAME="${GCP_MIGS_NAME}" \
+      --build-arg GCP_MIGS_REGION="${GCP_MIGS_REGION}" \
+      --build-arg GCP_SQL_NAME=${GCP_SQL_NAME} \
       -f ./Dockerfile \
       -t ${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID} .
     #docker login before push
@@ -65,8 +65,8 @@ build-migs-app-staging:
     name: staging
   variables:
     BUILD_ENV: "Staging"
-    GCLOUD_MIGS_NAME: "migsappsample-stag-logic-group"
-    GCLOUD_MIGS_REGION: "asia-southeast2"
+    GCP_MIGS_NAME: "migsappsample-stag-logic-group"
+    GCP_MIGS_REGION: "asia-southeast2"
   only:
     - staging
     - develop
