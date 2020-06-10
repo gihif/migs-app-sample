@@ -4,7 +4,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: migs-app-sample
   password: tG2-ICE0aOZCkN0t
-  host: 34.101.136.128
+  host: 127.0.0.1
 
 development:
   <<: *default
