@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.7'
 # Turbolinks makes navigating your web application faster
 gem 'turbolinks', '~> 5.2.0'
 
+gem 'sidekiq'
 gem 'redis'
 gem 'google-cloud-storage'
 

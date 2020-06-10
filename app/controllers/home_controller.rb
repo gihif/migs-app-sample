@@ -23,6 +23,7 @@ class HomeController < ApplicationController
   end
 
   def start_unhealthy
+    SimulateHighCpuLoadJob.perform_later
     Redis.new.set('unhealthy_status', true)
     redirect_to root_path
   end
