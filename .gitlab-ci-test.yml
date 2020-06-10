@@ -1,4 +1,6 @@
 .test-zone-template:
+  stage: test
+  when: manual
   variables:
     PROJECT_URL_PROTOCOL: "https://"
   tags:
@@ -16,9 +18,11 @@ test-zone-migs-app-staging:
     PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
   only:
     refs:
-      - web
-    variables:
-      - $STAGING
+      - staging
+      - develop
+  except:
+    refs:
+      - pushes
 
 test-zone-migs-app-release:
   extends: .test-zone-template
@@ -29,6 +33,46 @@ test-zone-migs-app-release:
     PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
   only:
     refs:
-      - web
-    variables:
-      - $RELEASE
+      - master
+  except:
+    refs:
+      - pushes
+
+.test-version-template:
+  stage: test
+  when: manual
+  variables:
+    PROJECT_URL_PROTOCOL: "https://"
+    PROJECT_NAME: "migs-app-sample"
+  tags:
+    - linux
+  script:
+    - echo "Testing information app version from Project ${PROJECT_NAME}"
+    - sh deployment/scripts/migs-test-version.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
+
+test-version-migs-app-staging:
+  extends: .test-version-template
+  environment:
+    name: staging
+  variables:
+    PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
+  only:
+    refs:
+      - staging
+      - develop
+  except:
+    refs:
+      - pushes
+
+test-version-migs-app-release:
+  extends: .test-version-template
+  environment:
+    name: release
+  variables:
+    PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
+  only:
+    refs:
+      - master
+  except:
+    refs:
+      - pushes
