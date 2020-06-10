@@ -4,7 +4,8 @@
   variables:
     PROJECT_URL_PROTOCOL: "https://"
   tags:
-    - linux
+    - docker
+  image: curlimages/curl
   script:
     - echo "Testing available infrastructure zone list from MIGs ${GCP_MIGS_NAME}"
     - sh deployment/scripts/migs-test-zone.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
@@ -45,7 +46,8 @@ test-zone-migs-app-release:
     PROJECT_URL_PROTOCOL: "https://"
     PROJECT_NAME: "migs-app-sample"
   tags:
-    - linux
+    - docker
+  image: curlimages/curl
   script:
     - echo "Testing information app version from Project ${PROJECT_NAME}"
     - sh deployment/scripts/migs-test-version.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
