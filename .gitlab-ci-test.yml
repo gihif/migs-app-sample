@@ -17,8 +17,10 @@ test-zone-migs-app-staging:
   only:
     refs:
       - web
-    variables:
-      - $STAGING
+      - develop
+  except:
+    refs:
+      - branches
 
 test-zone-migs-app-release:
   extends: .test-zone-template
