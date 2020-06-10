@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="display-3">
+  Images
+  <div class="float-right">
+    <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+    <%= link_to 'New Image', new_image_path, class: 'btn btn-secondary' %>
+  </div>
+</h1>
+
+<div class="row">
+  <% @images.each do |image| %>
+    <div class="col-3 text-center mb-3">
+      <%= link_to image_path(image) do %>
+        <%= image_tag image.picture.presence || 'https://dummyimage.com/600x400/000/fff', class: 'img-responsive img-thumbnail' %>
+      <% end %>
+      <p class="mb-0"><strong><%= image.title %></strong></p>
+      <small>by: <%= link_to image.user.name, user_path(image.user) %></small>
+    </div>
+  <% end %>
+</div>

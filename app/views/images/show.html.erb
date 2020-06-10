@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag @image.picture.presence || 'https://dummyimage.com/600x400/000/fff', class: 'img-responsive img-thumbnail' %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @image.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @image.user.name %>
+</p>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %> |
+<%= link_to 'Delete', image_path(@image), method: :delete %>

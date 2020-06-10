@@ -1,0 +1,88 @@
+variables:
+  #versioning variable
+  MAJOR_VER: "1"
+  MINOR_VER: "0"
+  #deployment variable
+  CONTAINER_REGISTRY_PROJECT_ID: "${CI_PROJECT_ID}-${CI_PROJECT_NAME}"
+
+.build-template:
+  stage: build
+  variables:
+    VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
+    PROJECT_NAME: "migs-app-sample"
+  tags:
+    - docker
+  image: docker:git
+  services:
+    - docker:dind
+    - google/cloud-sdk
+  before_script:
+    #set env variable
+    - IMAGE_NAME="$(echo ${PROJECT_NAME} | tr '[:upper:]' '[:lower:]')"
+    - BUILD_ENV_LOWERED="$(echo ${BUILD_ENV} | tr '[:upper:]' '[:lower:]')"
+    - GCR_PATH="gcr.io/${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${BUILD_ENV_LOWERED}"
+    - cp config/database.yml.${BUILD_ENV_LOWERED} config/database.yml
+    - cp config/storage.yml.${BUILD_ENV_LOWERED} config/storage.yml
+    - cp config/gcs.json.${BUILD_ENV_LOWERED} config/gcs.json
+  script:
+    #prepare auth json with google token
+    - echo "$GCP_SERVICE_ACCOUNT" | tr -d '\r' > keyfile.json
+    #build docker image
+    - echo "Building docker with image name [${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID}] from project ${PROJECT_NAME}"
+    - |
+      docker build \
+      --build-arg build_env="production" \
+      --build-arg master_key="${RAILS_MASTER_KEY}" \
+      --build-arg version="${VERSION_TAG}.${CI_PIPELINE_IID}" \
+      --build-arg GCP_MIGS_NAME="${GCP_MIGS_NAME}" \
+      --build-arg GCP_MIGS_REGION="${GCP_MIGS_REGION}" \
+      --build-arg GCP_SQL_NAME=${GCP_SQL_NAME} \
+      -f ./Dockerfile \
+      -t ${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID} .
+    #docker login before push
+    - docker login -u _json_key --password-stdin https://gcr.io < keyfile.json
+    #tagging X.X
+    - echo "Tagging image ${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}"
+    - docker tag ${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID} ${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}
+    - docker push ${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}
+    #docker login before push
+    - docker login -u _json_key --password-stdin https://gcr.io < keyfile.json
+    #tagging X.X.XXX for
+    - echo "Tagging image ${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}.${CI_PIPELINE_IID}"
+    - docker tag ${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID} ${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}.${CI_PIPELINE_IID}
+    - docker push ${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}.${CI_PIPELINE_IID}
+    #docker login before push
+    - docker login -u _json_key --password-stdin https://gcr.io < keyfile.json
+    #tagging latest
+    - echo "Tagging image ${GCR_PATH}/${IMAGE_NAME}:latest"
+    - docker tag ${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${IMAGE_NAME}:${CI_PIPELINE_IID} ${GCR_PATH}/${IMAGE_NAME}:latest
+    - docker push ${GCR_PATH}/${IMAGE_NAME}:latest
+  after_script:
+    - rm keyfile.json
+  except:
+    refs:
+      - web
+
+build-migs-app-staging:
+  extends: .build-template
+  environment:
+    name: staging
+  variables:
+    BUILD_ENV: "Staging"
+    GCP_MIGS_NAME: "migsappsample-stag-logic-group"
+    GCP_MIGS_REGION: "asia-southeast2"
+  only:
+    refs:
+      - staging
+
+build-migs-app-release:
+  extends: .build-template
+  environment:
+    name: release
+  variables:
+    BUILD_ENV: "Release"
+    GCLOUD_MIGS_NAME: "migsappsample-prod-logic-group"
+    GCLOUD_MIGS_REGION: "asia-southeast2"
+  only:
+    refs:
+      - master
