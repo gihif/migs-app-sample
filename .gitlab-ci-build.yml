@@ -33,6 +33,7 @@ variables:
       docker build \
       --build-arg build_env="production" \
       --build-arg master_key="${RAILS_MASTER_KEY}" \
+      --build-arg version="${VERSION_TAG}.${CI_PIPELINE_IID}" \
       --build-arg GCP_MIGS_NAME="${GCP_MIGS_NAME}" \
       --build-arg GCP_MIGS_REGION="${GCP_MIGS_REGION}" \
       --build-arg GCP_SQL_NAME=${GCP_SQL_NAME} \
