@@ -22,9 +22,9 @@ ENV RAILS_ENV=${build_env} \
 WORKDIR /app
 COPY . .
 
-RUN apk --update --no-cache add build-base nodejs mysql-dev curl python wget redis \
+RUN apk --update --no-cache add build-base nodejs mysql-dev curl python wget redis stress \
   && gem install bundler --no-document \
-  && gem install foreman \
+  && gem install foreman --no-document \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy \
   && chmod +x ./cloud_sql_proxy \
   && curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz \
