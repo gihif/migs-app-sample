@@ -1,7 +1,7 @@
 #!/bin/bash
 PROJECT_URL_PROTOCOL=$1
 PROJECT_URL_DOMAIN=$2
-PROJECT_URL_API='/zone'
+PROJECT_URL_API='/version'
 
 set -e
 
