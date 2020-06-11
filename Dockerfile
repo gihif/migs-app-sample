@@ -35,16 +35,14 @@ RUN apk --update --no-cache add build-base nodejs mysql-dev curl python wget red
   && /usr/local/gcloud/google-cloud-sdk/install.sh \
   && rm -rf /var/cache/apk/* \
   && bundle install --deployment --jobs 10 --retry 5 \
-  && bundle exec rails assets:precompile
-
-RUN \
-  apk add --update bash g++ make curl && \
-  curl -o /tmp/stress-${RELEASE_VERSION}.tgz https://fossies.org/linux/privat/stress-${RELEASE_VERSION}.tar.gz && \
-  cd /tmp && tar xvf stress-${RELEASE_VERSION}.tgz && rm /tmp/stress-${RELEASE_VERSION}.tgz && \
-  cd /tmp/stress-${RELEASE_VERSION} && \
-  ./configure && make -j$(getconf _NPROCESSORS_ONLN) && make install && \
-  apk del g++ make curl && \
-  rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+  && bundle exec rails assets:precompile \
+  && apk add --update bash g++ make curl \
+  && curl -o /tmp/stress-${RELEASE_VERSION}.tgz https://fossies.org/linux/privat/stress-${RELEASE_VERSION}.tar.gz \
+  && cd /tmp && tar xvf stress-${RELEASE_VERSION}.tgz && rm /tmp/stress-${RELEASE_VERSION}.tgz \
+  && cd /tmp/stress-${RELEASE_VERSION} \
+  && ./configure && make -j$(getconf _NPROCESSORS_ONLN) && make install \
+  && apk del g++ make curl \
+  && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
 EXPOSE 80
 CMD ["sh", "-c", "foreman start"]
