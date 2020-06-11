@@ -5,8 +5,8 @@ class HomeController < ApplicationController
   def index
     @hostname = %x{ hostname }
     @version = ENV['APP_VERSION']
-    @current_load = Redis.new.get('load_status').present? ? 'HIGH' : 'NORMAL'
-    @health_check = Redis.new.get('unhealthy_status').present? ? 'UNHEALTHY' : 'HEALTHY'
+    @current_load = $REDIS.get('load_status').present? ? 'HIGH' : 'NORMAL'
+    @health_check = $REDIS.get('unhealthy_status').present? ? 'UNHEALTHY' : 'HEALTHY'
   end
 
   def zone
@@ -18,18 +18,18 @@ class HomeController < ApplicationController
   end
 
   def start_healthy
-    Redis.new.del('unhealthy_status')
+    $REDIS.del('unhealthy_status')
     redirect_to root_path
   end
 
   def start_unhealthy
     SimulateHighCpuLoadJob.perform_later
-    Redis.new.set('unhealthy_status', true)
+    $REDIS.set('unhealthy_status', true)
     redirect_to root_path
   end
 
   def start_load
-    Redis.new.set('load_status', true)
+    $REDIS.set('load_status', true)
     redirect_to root_path
   end
 
