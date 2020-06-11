@@ -1,6 +1,6 @@
 variables:
   #versioning variable
-  MAJOR_VER: "2"
+  MAJOR_VER: "1"
   MINOR_VER: "0"
   #deployment variable
   CONTAINER_REGISTRY_PROJECT_ID: "${CI_PROJECT_ID}-${CI_PROJECT_NAME}"
