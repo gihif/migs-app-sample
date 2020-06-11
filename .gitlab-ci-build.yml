@@ -33,6 +33,7 @@ variables:
       docker build \
       --build-arg build_env="production" \
       --build-arg master_key="${RAILS_MASTER_KEY}" \
+      --build-arg version="${VERSION_TAG}.${CI_PIPELINE_IID}" \
       --build-arg GCP_MIGS_NAME="${GCP_MIGS_NAME}" \
       --build-arg GCP_MIGS_REGION="${GCP_MIGS_REGION}" \
       --build-arg GCP_SQL_NAME=${GCP_SQL_NAME} \
@@ -58,6 +59,9 @@ variables:
     - docker push ${GCR_PATH}/${IMAGE_NAME}:latest
   after_script:
     - rm keyfile.json
+  except:
+    refs:
+      - web
 
 build-migs-app-staging:
   extends: .build-template
@@ -68,8 +72,8 @@ build-migs-app-staging:
     GCP_MIGS_NAME: "migsappsample-stag-logic-group"
     GCP_MIGS_REGION: "asia-southeast2"
   only:
-    - staging
-    - develop
+    refs:
+      - staging
 
 build-migs-app-release:
   extends: .build-template
@@ -80,4 +84,5 @@ build-migs-app-release:
     GCLOUD_MIGS_NAME: "migsappsample-prod-logic-group"
     GCLOUD_MIGS_REGION: "asia-southeast2"
   only:
-    - master_udon
+    refs:
+      - master

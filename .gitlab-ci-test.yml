@@ -1,0 +1,80 @@
+.test-zone-template:
+  stage: test
+  when: manual
+  variables:
+    PROJECT_URL_PROTOCOL: "https://"
+  tags:
+    - docker
+  image: curlimages/curl
+  script:
+    - echo "Testing available infrastructure zone list from MIGs ${GCP_MIGS_NAME}"
+    - sh deployment/scripts/migs-test-zone.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
+
+test-zone-migs-app-staging:
+  extends: .test-zone-template
+  environment:
+    name: staging
+  variables:
+    GCP_MIGS_NAME: "migsappsample-stag-logic-group"
+    PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
+  only:
+    refs:
+      - staging
+      - develop
+  except:
+    refs:
+      - pushes
+
+test-zone-migs-app-release:
+  extends: .test-zone-template
+  environment:
+    name: release
+  variables:
+    GCP_MIGS_NAME: "migsappsample-prod-logic-group"
+    PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
+  only:
+    refs:
+      - master
+  except:
+    refs:
+      - pushes
+
+.test-version-template:
+  stage: test
+  when: manual
+  variables:
+    PROJECT_URL_PROTOCOL: "https://"
+    PROJECT_NAME: "migs-app-sample"
+  tags:
+    - docker
+  image: curlimages/curl
+  script:
+    - echo "Testing information app version from Project ${PROJECT_NAME}"
+    - sh deployment/scripts/migs-test-version.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
+
+test-version-migs-app-staging:
+  extends: .test-version-template
+  environment:
+    name: staging
+  variables:
+    PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
+  only:
+    refs:
+      - staging
+      - develop
+  except:
+    refs:
+      - pushes
+
+test-version-migs-app-release:
+  extends: .test-version-template
+  environment:
+    name: release
+  variables:
+    PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
+  only:
+    refs:
+      - master
+  except:
+    refs:
+      - pushes
