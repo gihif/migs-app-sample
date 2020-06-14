@@ -20,6 +20,7 @@ test-zone-migs-app-staging:
   only:
     refs:
       - staging
+      - develop
   except:
     refs:
       - pushes
@@ -60,6 +61,7 @@ test-version-migs-app-staging:
   only:
     refs:
       - staging
+      - develop
   except:
     refs:
       - pushes
