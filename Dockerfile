@@ -24,7 +24,7 @@ ENV RAILS_ENV=${build_env} \
 WORKDIR /app
 COPY . .
 
-RUN apk --update --no-cache add build-base nodejs mysql-dev curl python wget redis \
+RUN apk --update --no-cache add build-base nodejs mysql-dev curl python3 py3-pip wget redis \
   && gem install bundler --no-document \
   && gem install foreman --no-document \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy \
