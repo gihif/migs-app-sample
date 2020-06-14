@@ -21,7 +21,7 @@ ENV RAILS_ENV=${build_env} \
     RELEASE_VERSION=1.0.4 \
     SHELL=/bin/bash
 
-RUN apk --update --no-cache add build-base nodejs mysql-dev curl python wget redis \
+RUN apk --update --no-cache add build-base nodejs mysql-dev curl python3 py3-pip wget redis \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy \
   && chmod +x ./cloud_sql_proxy \
   && curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz \
