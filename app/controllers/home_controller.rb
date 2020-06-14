@@ -23,12 +23,12 @@ class HomeController < ApplicationController
   end
 
   def start_unhealthy
-    SimulateHighCpuLoadJob.perform_later
     $REDIS.set('unhealthy_status', true)
     redirect_to root_path
   end
 
   def start_load
+    SimulateHighCpuLoadJob.perform_later
     $REDIS.set('load_status', true)
     redirect_to root_path
   end
