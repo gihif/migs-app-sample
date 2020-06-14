@@ -1,6 +1,6 @@
 FROM ruby:2.6.6-alpine
 
-LABEL maintainer="Uchiha Itachi <>"
+LABEL maintainer="Uchiha Itachi <itachi@agate.id>"
 
 ARG build_env
 ARG master_key
@@ -21,13 +21,21 @@ ENV RAILS_ENV=${build_env} \
     RELEASE_VERSION=1.0.4 \
     SHELL=/bin/bash
 
+WORKDIR /app
+COPY . .
+
 RUN apk --update --no-cache add build-base nodejs mysql-dev curl python3 py3-pip wget redis \
+  && gem install bundler --no-document \
+  && gem install foreman --no-document \
   && wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy \
   && chmod +x ./cloud_sql_proxy \
   && curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz \
   && mkdir -p /usr/local/gcloud \
   && tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz \
   && /usr/local/gcloud/google-cloud-sdk/install.sh \
+  && rm -rf /var/cache/apk/* \
+  && bundle install --deployment --jobs 10 --retry 5 \
+  && bundle exec rails assets:precompile \
   && apk add --update bash g++ make curl \
   && curl -o /tmp/stress-${RELEASE_VERSION}.tgz https://fossies.org/linux/privat/stress-${RELEASE_VERSION}.tar.gz \
   && cd /tmp && tar xvf stress-${RELEASE_VERSION}.tgz && rm /tmp/stress-${RELEASE_VERSION}.tgz \
@@ -35,14 +43,6 @@ RUN apk --update --no-cache add build-base nodejs mysql-dev curl python3 py3-pip
   && ./configure && make -j$(getconf _NPROCESSORS_ONLN) && make install \
   && apk del g++ make curl \
   && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
-
-WORKDIR /app
-COPY . .
-
-RUN gem install bundler --no-document \
-  && gem install foreman --no-document \
-  && bundle install --deployment --jobs 10 --retry 5 \
-  && bundle exec rails assets:precompile
 
 EXPOSE 80
 CMD ["sh", "-c", "foreman start"]
