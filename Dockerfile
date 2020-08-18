@@ -4,20 +4,22 @@ LABEL maintainer="Uchiha Itachi <itachi@agate.id>"
 
 ARG build_env
 ARG master_key
+ARG version
 ARG GCP_MIGS_NAME
 ARG GCP_MIGS_REGION
 ARG GCP_SQL_NAME
-ARG version
+ARG GCP_SQL_CONNECTION
 
 ENV RAILS_ENV=${build_env} \
     RAILS_MASTER_KEY=${master_key} \
+    APP_VERSION=${version} \
     RAILS_LOG_TO_STDOUT=true \
     RAILS_SERVE_STATIC_FILES=true \
     PATH=$PATH:/usr/local/gcloud/google-cloud-sdk/bin \
     GCLOUD_MIGS_NAME=${GCP_MIGS_NAME} \
     GCLOUD_MIGS_REGION=${GCP_MIGS_REGION} \
-    GCLOUD_CLOUD_SQL=${GCP_SQL_NAME} \
-    APP_VERSION=${version} \
+    GCLOUD_SQL_NAME=${GCP_SQL_NAME} \
+    GCLOUD_SQL_CONNECTION=${GCP_SQL_CONNECTION} \
     RELEASE_VERSION=1.0.4 \
     SHELL=/bin/bash
 

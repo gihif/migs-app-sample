@@ -44,4 +44,15 @@ class HomeController < ApplicationController
     cmd = "gcloud compute instance-groups managed list-instances #{ENV['GCLOUD_MIGS_NAME']} --region #{ENV['GCLOUD_MIGS_REGION']} --filter=\"NAME:$(hostname)\" --format=\"table(INSTANCE_TEMPLATE)\""
     @template = `#{cmd}`.split("\n").last rescue 'command not found'
   end
+
+  def fetch_dbzone
+    cmd = "gcloud sql instances list --filter=\"NAME:#{ENV['GCLOUD_SQL_NAME']}\" --format=\"table(LOCATION)\""
+    @dbzone = `#{cmd}`.split("\n").last rescue 'command not found'
+  end
+
+  def fetch_dbstatus
+    cmd = "gcloud sql instances list --filter=\"NAME:#{ENV['GCLOUD_SQL_NAME']}\" --format=\"table(STATUS)\""
+    @dbstatus = `#{cmd}`.split("\n").last rescue 'command not found'
+  end
+
 end
