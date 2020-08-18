@@ -25,6 +25,14 @@
       <td><span class="badge badge-pill badge-<%= @health_check == 'UNHEALTHY' ? 'danger' : 'success' %>"><%= @health_check %></span></td>
     </tr>
     <tr>
+      <td><strong>Database Zone</strong></td>
+      <td><%= @dbzone %></td>
+    </tr>
+    <tr>
+      <td><strong>Database Status</strong></td>
+      <td><span class="badge badge-pill badge-<%= @dbstatus == 'MAINTENACE' ? 'danger' : 'success' %>"><%= @dbstatus %></span></td>
+    </tr>
+    <tr>
       <td><strong>Actions Button</strong></td>
       <td>
         <% if @health_check == 'UNHEALTHY' %>
