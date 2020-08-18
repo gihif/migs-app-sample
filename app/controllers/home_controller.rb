@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   before_action :fetch_zone, only: [:index, :zone]
   before_action :fetch_template, only: [:index, :version]
+  before_action :fetch_dbzone, only: [:index]
+  before_action :fetch_dbstatus, only: [:index]
 
   def index
     @hostname = %x{ hostname }
