@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   before_action :fetch_zone, only: [:index, :zone]
   before_action :fetch_template, only: [:index, :version]
-  before_action :fetch_dbzone, only: [:index]
-  before_action :fetch_dbstatus, only: [:index]
+  before_action :fetch_dbzone, only: [:index, :dbinfo]
+  before_action :fetch_dbstatus, only: [:index, :dbinfo]
 
   def index
     @hostname = %x{ hostname }
@@ -17,6 +17,10 @@ class HomeController < ApplicationController
 
   def version
     render plain: "app version: #{ENV['APP_VERSION']}\ntemplate: #{@template}"
+  end
+
+  def dbinfo
+    render plain: "database zone: #{@dbzone}\nstatus: #{@dbstatus}"
   end
 
   def start_healthy
