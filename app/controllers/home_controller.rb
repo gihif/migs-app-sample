@@ -12,15 +12,15 @@ class HomeController < ApplicationController
   end
 
   def zone
-    render plain: @zone
+    render plain: "#{@zone}\n"
   end
 
   def version
-    render plain: "app version: #{ENV['APP_VERSION']}\ntemplate: #{@template}"
+    render plain: "app version: #{ENV['APP_VERSION']}\ntemplate: #{@template}\n"
   end
 
   def dbinfo
-    render plain: "database zone: #{@dbzone}\nstatus: #{@dbstatus}"
+    render plain: "database zone: #{@dbzone}\nstatus: #{@dbstatus}\n"
   end
 
   def start_healthy
