@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   end
 
   def zone
-    render plain: "#{@zone}\n"
+    render plain: "app zone: #{@zone}"
   end
 
   def version
@@ -36,6 +36,11 @@ class HomeController < ApplicationController
   def start_load
     SimulateHighCpuLoadJob.perform_later
     $REDIS.set('load_status', true)
+    redirect_to root_path
+  end
+
+  def start_failover
+    SimulateDatabaseFailoverJob.perform_later
     redirect_to root_path
   end
 
