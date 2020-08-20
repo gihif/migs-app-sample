@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post 'start_unhealthy' => 'home#start_unhealthy'
   post 'start_healthy' => 'home#start_healthy'
   post 'start_load' => 'home#start_load'
+  post 'start_failover' => 'home#start_failover'
 end
