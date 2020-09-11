@@ -76,8 +76,8 @@ build-migs-app-release:
     name: release
   variables:
     BUILD_ENV: "Release"
-    GCLOUD_MIGS_NAME: "migsappsample-prod-logic-group"
-    GCLOUD_MIGS_REGION: "asia-southeast2"
+    GCP_MIGS_NAME: "migsappsample-prod-logic-group"
+    GCP_MIGS_REGION: "asia-southeast2"
     GCP_SQL_NAME: "migsappsample-prod-db"
   only:
     refs:
