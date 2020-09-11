@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "unnur-migsappsample",
+  "private_key_id": "1925cb3d5ea192a73fb39ea64dc31626facca791",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCt6j3pMmmJltT7\nFvnj5dwii+9Jh6NvLmpSqUCl0ZCB2kOptFcajiwIFjmv3AFW8Huz2yBhCE7Cx18J\nEo/L0Sj1uEEyuxSk4c+zckCv5oGOmfQKWnp/FX5vtpMOp0JkXkLzmpq6TDpcbkKw\nJbGv8LtWNHNtAASEuY6wU54GkUoPiz19ujiEmzLmyOhTLRM01zBjXkIFDfVH2wpi\n1HD9N0eAOkdGV0Dk+1Xvxr4cgWzL+iO+KLFtNcAmMoyxvlFXYaHChXmOqnWJ7Evq\nX5kahKhhVxuXrg4z/VeO6yGF6HClFPe7DGBMO7FjFdZrN3R0AqgAnNWv+JqTzS4L\ntogZBiuvAgMBAAECggEAEvmoSJ3J+wuccEro9+8X7iMDeCvW7qYLTrqNxanQUQKt\n+EGncUvKzRUTtTbVZJV3gb+qUDv2T/UtztEaJFxNUkYIww67aWQD4+nW2fpV72en\nw0ts6xm+wlSSxfoE2euY9XhMYoA3q+cR2qM6OF6VKgot/9oNJCgUw/NTnhbTFE/o\nGpsnKGsZBQe3gae11UTjgVTh1j5CuREmP1ASUxV164rWEz1Ppy0DWosG7b691thr\nekcYJV83bgYKph9u+UyE0inFFpmGIZ+eoUMsarcKc9VzdsgPZmzp3avM8SV8tuuC\nBgzpaPgxTixB32R19HXy2MCzcbkjW/y3BrkGJwBIeQKBgQDqBGnzxg0a+hO1GgkX\nN9qNNTMtZCEVQPUv8xetA6C1+iEvPtHTL9hYo5P3bfNBi077zMHX8SLRPi0yAq/I\nuhPyxXpEHOI+4K9bJx+jOqt9P0WvY1JDF5VWHiWwfjhKyaJLg1DbIXqugqHPDm9v\ndYo7ZVcEptCj66tPV5+5Zi5RCQKBgQC+QIFFh4lerp6EtmKQ7IvDRMf1IvQbtuvk\neu6PjkMrE8GSikFR1h86rXnOw2dbXfHxOx1ntUWnRsVn/wRTozYDq7whuO8V/Jx3\n3VaiaCEEOJvSRE6u+Ko6c6EicnywG9jjebw4QFa0x7rcW/a/Bb3ZwjknUhA0xKnh\nTSO36PEc9wKBgEBcBmesyF3q+RCNoIJqMgkz4GdTamXV/5i4WoKSxNhHemjr9fkG\n55E5K7CY5JXaIlbN8WHaR6EUYImog3/I7UOPXBjveKmiUZfYIrNZp2BCzn916WHa\nUo/kqqjnjcPDwIbUDqC1jHACLU4swij9Qo8jR9NXrXnnjq27g4oRuBtBAoGAamHb\nZyugrqbp0L/DYdJDXI8LWJGQ+iZQxVPQLcmY2W+UoAJbAA3BLKhwIiO1matwbDln\n+eOs7Rpvq/U3UCVFQMw4yIqGdj7op0XG+c1MGPYme27iqIg3d7PMeFyYSElp/9jE\nXJftY+0DGdD6qlnljOxD1S7YDQmjDG57+IxytoUCgYBLCeAFYfEtBH0ElyY+GymW\nfE2sw2472S4dBfI9CopPvdb2popMO0MmBHwVVd+w6Pb3j/+HKfaGD/nLQrxUZyHi\n3gyDb+6FEPWO4J8C9t2C4IgMU6p7fYOTu9+9niRGOc0/KxYkTc0GsdJ3QyRQQcx4\nAfbQrWFCYOEq9Rnke3bnJw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "admin-project@unnur-migsappsample.iam.gserviceaccount.com",
+  "client_id": "106234581969693735801",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin-project%40unnur-migsappsample.iam.gserviceaccount.com"
+}
