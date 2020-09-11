@@ -1,10 +1,3 @@
-variables:
-  #versioning variable
-  MAJOR_VER: "1"
-  MINOR_VER: "0"
-  #deployment variable
-  CONTAINER_REGISTRY_PROJECT_ID: "${CI_PROJECT_ID}-${CI_PROJECT_NAME}"
-
 .build-template:
   stage: build
   variables:
@@ -64,7 +57,7 @@ variables:
     refs:
       - web
 
-build-migs-app-staging:
+.build-migs-app-staging:
   extends: .build-template
   environment:
     name: staging
