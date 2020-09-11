@@ -8,9 +8,9 @@ variables:
 stages:
   - build
   - test
-  - deploy
+  - predeploy
 
 include:
   - local: '/.gitlab-ci-build.yml'
   - local: '/.gitlab-ci-test.yml'
-  - local: '/.gitlab-ci-deploy.yml'
+  - local: '/.gitlab-ci-predeploy.yml'
