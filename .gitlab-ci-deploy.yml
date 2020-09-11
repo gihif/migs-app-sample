@@ -1,4 +1,4 @@
-.build-template:
+.deploy-template:
   stage: deploy
   variables:
     VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
