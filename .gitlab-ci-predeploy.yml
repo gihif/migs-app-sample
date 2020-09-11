@@ -1,4 +1,4 @@
-.deploy-template:
+.predeploy-template:
   stage: predeploy
   variables:
     VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
@@ -39,8 +39,8 @@
     refs:
       - web
 
-deploy-migs-app-release:
-  extends: .deploy-template
+predeploy-migs-app-release:
+  extends: .predeploy-template
   environment:
     name: release
   variables:
