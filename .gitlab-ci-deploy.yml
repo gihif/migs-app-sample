@@ -3,11 +3,11 @@
   variables:
     VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
     PROJECT_NAME: "migs-app-sample"
-    GCLOUD_TEMPLATE_SCOPES: "cloud-platform"
-    GCLOUD_NETWORK_TAGS: "http-server,all-personal"
-    GCLOUD_LABEL_DIVDEPT: "unnur"
-    GCLOUD_LABEL_QUEST: "migsappsample"
-    GCLOUD_LABEL_TYPE: "logic"
+    GCP_TEMPLATE_SCOPES: "cloud-platform"
+    GCP_NETWORK_TAGS: "http-server,all-personal"
+    GCP_LABEL_DIVDEPT: "unnur"
+    GCP_LABEL_QUEST: "migsappsample"
+    GCP_LABEL_TYPE: "logic"
   tags:
     - docker
   image: google/cloud-sdk:alpine
@@ -24,14 +24,14 @@
     #create instance template
     - |
       gcloud compute instance-templates \
-      create-with-container ${GCLOUD_TEMPLATE_NAME}-${MAJOR_VER}-${MINOR_VER}-${CI_PIPELINE_IID} \
+      create-with-container ${GCP_TEMPLATE_NAME}-${MAJOR_VER}-${MINOR_VER}-${CI_PIPELINE_IID} \
       --container-image=${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}.${CI_PIPELINE_IID} \
       --container-privileged \
-      --machine-type=${GCLOUD_MACHINE_TYPE} \
-      --boot-disk-size=${GCLOUD_DISK_SIZE} \
-      --scopes=${GCLOUD_TEMPLATE_SCOPES} \
-      --tags=${GCLOUD_NETWORK_TAGS} \
-      --labels=div-dept=${GCLOUD_LABEL_DIVDEPT},quest=${GCLOUD_LABEL_QUEST},environment=${BUILD_ENV_LOWERED},type=${GCLOUD_LABEL_TYPE} \
+      --machine-type=${GCP_MACHINE_TYPE} \
+      --boot-disk-size=${GCP_DISK_SIZE} \
+      --scopes=${GCP_TEMPLATE_SCOPES} \
+      --tags=${GCP_NETWORK_TAGS} \
+      --labels=div-dept=${GCP_LABEL_DIVDEPT},quest=${GCP_LABEL_QUEST},environment=${BUILD_ENV_LOWERED},type=${GCP_LABEL_TYPE} \
       --preemptible
   after_script:
     - rm keyfile.json
@@ -45,9 +45,9 @@ deploy-migs-app-release:
     name: release
   variables:
     BUILD_ENV: "Release"
-    GCLOUD_TEMPLATE_NAME: "migsappsample-prod-logic-template"
-    GCLOUD_MACHINE_TYPE: "n1-standard-2"
-    GCLOUD_DISK_SIZE: "10GB"
+    GCP_TEMPLATE_NAME: "migsappsample-prod-logic-template"
+    GCP_MACHINE_TYPE: "n1-standard-2"
+    GCP_DISK_SIZE: "10GB"
   only:
     refs:
       - master
