@@ -25,7 +25,15 @@
       <td><span class="badge badge-pill badge-<%= @health_check == 'UNHEALTHY' ? 'danger' : 'success' %>"><%= @health_check %></span></td>
     </tr>
     <tr>
-      <td><strong>Actions</strong></td>
+      <td><strong>Database Zone</strong></td>
+      <td><%= @dbzone %></td>
+    </tr>
+    <tr>
+      <td><strong>Database Status</strong></td>
+      <td><span class="badge badge-pill badge-<%= @dbstatus == 'MAINTENANCE' ? 'danger' : 'success' %>"><%= @dbstatus %></span></td>
+    </tr>
+    <tr>
+      <td><strong>Actions Button</strong></td>
       <td>
         <% if @health_check == 'UNHEALTHY' %>
           <%= link_to 'Make Healthy', start_healthy_path, method: :post, class: 'btn btn-primary my-1' %>
@@ -33,9 +41,16 @@
           <%= link_to 'Make Unhealty', start_unhealthy_path, method: :post, class: 'btn btn-primary my-1' %>
         <% end %>
         <%= link_to 'Start Load', start_load_path, method: :post, class: 'btn btn-primary my-1' %>
+        <%= link_to 'Start Failover', start_failover_path, method: :post, class: 'btn btn-primary my-1' %>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Actions URL</strong></td>
+      <td>
         <%= link_to 'Health Check URL', health_path, class: 'btn btn-primary my-1', target: '_blank' %>
         <%= link_to 'Version URL', version_path, class: 'btn btn-primary my-1', target: '_blank' %>
         <%= link_to 'Zone URL', zone_path, class: 'btn btn-primary my-1', target: '_blank' %>
+        <%= link_to 'Database Info URL', dbinfo_path, class: 'btn btn-primary my-1', target: '_blank' %>
         <%= link_to 'App URL', images_path, class: 'btn btn-primary my-1', target: '_blank' %>
       </td>
     </tr>

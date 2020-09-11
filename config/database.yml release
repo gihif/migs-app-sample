@@ -3,7 +3,7 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 56 } %>
   username: migs-app-sample
-  password: tG2-ICE0aOZCkN0t
+  password: bE.kYlRJAa-iU492
   host: 127.0.0.1
 
 development:

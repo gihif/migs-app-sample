@@ -20,7 +20,6 @@ test-zone-migs-app-staging:
   only:
     refs:
       - staging
-      - develop
   except:
     refs:
       - pushes
@@ -61,13 +60,51 @@ test-version-migs-app-staging:
   only:
     refs:
       - staging
-      - develop
   except:
     refs:
       - pushes
 
 test-version-migs-app-release:
   extends: .test-version-template
+  environment:
+    name: release
+  variables:
+    PROJECT_URL_DOMAIN: "migsappsample.gihif.xyz"
+  only:
+    refs:
+      - master
+  except:
+    refs:
+      - pushes
+
+.test-failover-template:
+  stage: test
+  when: manual
+  variables:
+    PROJECT_URL_PROTOCOL: "https://"
+    PROJECT_NAME: "migs-app-sample"
+  tags:
+    - docker
+  image: curlimages/curl
+  script:
+    - echo "Testing database failover from Project ${PROJECT_NAME}"
+    - sh deployment/scripts/sql-test-failover.sh ${PROJECT_URL_PROTOCOL} ${PROJECT_URL_DOMAIN}
+
+test-failover-sql-db-staging:
+  extends: .test-failover-template
+  environment:
+    name: staging
+  variables:
+    PROJECT_URL_DOMAIN: "migsappsample-staging.gihif.xyz"
+  only:
+    refs:
+      - staging
+  except:
+    refs:
+      - pushes
+
+test-failover-sql-db-release:
+  extends: .test-failover-template
   environment:
     name: release
   variables:
