@@ -1,5 +1,5 @@
 .deploy-template:
-  stage: deploy
+  stage: predeploy
   variables:
     VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
     PROJECT_NAME: "migs-app-sample"
