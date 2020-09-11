@@ -1,0 +1,53 @@
+.build-template:
+  stage: deploy
+  variables:
+    VERSION_TAG: "${MAJOR_VER}.${MINOR_VER}"
+    PROJECT_NAME: "migs-app-sample"
+    GCLOUD_TEMPLATE_SCOPES: "cloud-platform"
+    GCLOUD_NETWORK_TAGS: "http-server,all-personal"
+    GCLOUD_LABEL_DIVDEPT: "unnur"
+    GCLOUD_LABEL_QUEST: "migsappsample"
+    GCLOUD_LABEL_TYPE: "logic"
+  tags:
+    - docker
+  image: google/cloud-sdk:alpine
+  before_script:
+    #set env variable
+    - IMAGE_NAME="$(echo ${PROJECT_NAME} | tr '[:upper:]' '[:lower:]')"
+    - BUILD_ENV_LOWERED="$(echo ${BUILD_ENV} | tr '[:upper:]' '[:lower:]')"
+    - GCR_PATH="gcr.io/${GCP_PROJECT_ID}/${CONTAINER_REGISTRY_PROJECT_ID}/${BUILD_ENV_LOWERED}"
+  script:
+    #login to gcp project
+    - echo "${GCP_SERVICE_ACCOUNT}" | tr -d '\r' > keyfile.json
+    - gcloud auth activate-service-account --key-file=keyfile.json
+    - gcloud config set project ${GCP_PROJECT_ID}
+    #create instance template
+    - |
+      gcloud compute instance-templates \
+      create-with-container ${GCLOUD_TEMPLATE_NAME}-${MAJOR_VER}-${MINOR_VER}-${CI_PIPELINE_IID} \
+      --container-image=${GCR_PATH}/${IMAGE_NAME}:${VERSION_TAG}.${CI_PIPELINE_IID} \
+      --container-privileged \
+      --machine-type=${GCLOUD_MACHINE_TYPE} \
+      --boot-disk-size=${GCLOUD_DISK_SIZE} \
+      --scopes=${GCLOUD_TEMPLATE_SCOPES} \
+      --tags=${GCLOUD_NETWORK_TAGS} \
+      --labels=div-dept=${GCLOUD_LABEL_DIVDEPT},quest=${GCLOUD_LABEL_QUEST},environment=${BUILD_ENV_LOWERED},type=${GCLOUD_LABEL_TYPE} \
+      --preemptible
+  after_script:
+    - rm keyfile.json
+  except:
+    refs:
+      - web
+
+deploy-migs-app-release:
+  extends: .deploy-template
+  environment:
+    name: release
+  variables:
+    BUILD_ENV: "Release"
+    GCLOUD_TEMPLATE_NAME: "migsappsample-prod-logic-template"
+    GCLOUD_MACHINE_TYPE: "n1-standard-2"
+    GCLOUD_DISK_SIZE: "10GB"
+  only:
+    refs:
+      - master
