@@ -11,7 +11,7 @@ stages:
   - predeploy
 
 include:
-  - local: '/.gitlab-ci-build.yml'
+#  - local: '/.gitlab-ci-build.yml'
   - local: '/.gitlab-ci-sonarcloud.yml'
 #  - local: '/.gitlab-ci-test.yml'
 #  - local: '/.gitlab-ci-predeploy.yml'
