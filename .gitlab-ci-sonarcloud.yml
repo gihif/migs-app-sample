@@ -12,14 +12,12 @@ sonarqube-check:
   before_script:
     - export SONAR_TOKEN=${SONAR_TOKEN_SONARQUBE}
     - export SONAR_HOST_URL=${SONAR_HOST_URL_SONARQUBE}
-  script: 
+  script:
+    - sleep 60m
     - sonar-scanner
   allow_failure: true
   only:
     - main
   tags:
-    - bash
     - docker
-    - linux
-    - ubuntu
     - wsl
