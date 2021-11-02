@@ -17,3 +17,9 @@ sonarqube-check:
   allow_failure: true
   only:
     - main
+  tags:
+    - bash
+    - docker
+    - linux
+    - ubuntu
+    - wsl
